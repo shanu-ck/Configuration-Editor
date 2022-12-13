@@ -10,15 +10,6 @@ export default function FormComponent() {
     const [jsonData, setJsonData] = useState();
     const [filename, setFilename] = useState("filename");
 
-    const updateConfigFile = () => {
-        console.log("Updated json", jsonData);
-    };
-
-    const generateDownloadableFile = () =>
-        `data:text/json;charset=utf-8,${encodeURIComponent(
-            JSON.stringify(jsonData, null, 2)
-        )}`;
-
     const showFile = async (e) => {
         e.preventDefault();
         const reader = new FileReader();

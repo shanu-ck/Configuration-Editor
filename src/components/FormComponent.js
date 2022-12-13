@@ -84,7 +84,7 @@ export default function FormComponent() {
                             </>
                         )}
                     </Card.Body>
-                    <Card.Footer className="text-muted">
+                    <Card.Footer className="text-muted text-center">
                         Developed by @Shanu-CK
                     </Card.Footer>
                 </Card>

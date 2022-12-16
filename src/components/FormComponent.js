@@ -66,12 +66,14 @@ export default function FormComponent() {
                             <>
                                 <Card.Title>File Content</Card.Title>
                                 <TreeComponent />
-                                <Button
-                                    variant="primary"
-                                    onClick={exportToJson}
-                                >
-                                    Download
-                                </Button>
+                                <div className="text-center mt-5">
+                                    <Button
+                                        variant="primary"
+                                        onClick={exportToJson}
+                                    >
+                                        Download
+                                    </Button>
+                                </div>
                             </>
                         )}
                     </Card.Body>

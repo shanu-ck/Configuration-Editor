@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import _ from "lodash";
 import JsonDataContext from "../contexts/JsonDataContext";
+import FormControl from 'react-bootstrap/FormControl';
 
 const NestedComponent = ({ keyPath }) => {
     const {jsonData, setJsonData}=useContext(JsonDataContext);
@@ -12,7 +13,7 @@ const NestedComponent = ({ keyPath }) => {
     };
 
     return (
-        <input
+        <FormControl 
             defaultValue={_.get(jsonData, keyPath)}
             name={keyPath}
             onChange={onChange}

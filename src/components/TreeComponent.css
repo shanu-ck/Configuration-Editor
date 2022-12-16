@@ -1,5 +1,6 @@
 /* Remove default bullets */
-ul, #myUL {
+ul,
+#myUL {
     list-style-type: none;
 }
 
@@ -17,8 +18,9 @@ body {
 /* Style the caret/arrow */
 .caret {
     cursor: pointer;
-    user-select: none; /* Prevent text selection */
-    background: red;
+    user-select: none;
+    /* Prevent text selection */
+    /* background: red; */
 }
 
 /* Create the caret/arrow with a unicode, and style it */

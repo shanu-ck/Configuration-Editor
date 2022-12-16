@@ -4,7 +4,7 @@ import "./TreeComponent.css";
 import JsonDataContext from "../contexts/JsonDataContext";
 
 const TreeComponent = () => {
-    const {jsonData }= useContext(JsonDataContext);
+    const { jsonData } = useContext(JsonDataContext);
     const keyGen = (keyPath, key) => [...keyPath, key];
 
     const processObject = (object, keyPath) =>
@@ -29,11 +29,14 @@ const TreeComponent = () => {
             let newKeyPath = keyGen(keyPath, key);
             return (
                 <div key={key + value}>
-                    {isPrimative(value)
-                        ? buildLeaf(value, newKeyPath)
-                        : isArray(value)
-                        ? loopArray(value, newKeyPath)
-                        : processObject(value, newKeyPath)}
+                    {buildNode(key)}
+                    <ul className="nested">
+                        {isPrimative(value)
+                            ? buildLeaf(value, newKeyPath)
+                            : isArray(value)
+                            ? loopArray(value, newKeyPath)
+                            : processObject(value, newKeyPath)}
+                    </ul>
                 </div>
             );
         });
@@ -50,7 +53,7 @@ const TreeComponent = () => {
 
     const buildNode = (key) => (
         <span
-            className="node"
+            className="node caret"
             onClick={(e) => {
                 toggle(e);
             }}
@@ -60,9 +63,9 @@ const TreeComponent = () => {
     );
 
     const buildLeaf = (value, keyPath) => (
-        <li className="leaf" onClick={(e) => {}}>
-            <NestedComponent keyPath={keyPath}/>
-        </li>
+        // <li className="leaf" onClick={(e) => {}}>
+        <NestedComponent keyPath={keyPath} />
+        // </li>
     );
 
     const toggle = (event) => {
@@ -70,6 +73,7 @@ const TreeComponent = () => {
             .querySelector(".nested")
             .classList.toggle("active");
         event.target.classList.toggle("node-down");
+        event.target.classList.toggle("caret-down");
     };
 
     return (

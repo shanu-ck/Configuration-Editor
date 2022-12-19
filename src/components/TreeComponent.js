@@ -33,22 +33,30 @@ const TreeComponent = () => {
         );
     };
 
-    const loopArray = (array, keyPath) =>
-        array.map((value, key) => {
-            let newKeyPath = keyGen(keyPath, key);
-            return (
-                <div key={key + value}>
-                    {buildNode(key)}
-                    <ul className="nested">
-                        {isPrimitive(value)
-                            ? buildLeaf(value, newKeyPath)
-                            : isArray(value)
-                            ? loopArray(value, newKeyPath)
-                            : processObject(value, newKeyPath)}
-                    </ul>
-                </div>
-            );
-        });
+    const loopArray = (array, keyPath) => {
+        return (
+            <>
+                {array.map((value, key) => {
+                    let newKeyPath = keyGen(keyPath, key);
+                    return (
+                        <div key={key + value}>
+                            {buildNode(key)}
+                            <ul className="nested">
+                                {isPrimitive(value)
+                                    ? buildLeaf(value, newKeyPath)
+                                    : isArray(value)
+                                    ? loopArray(value, newKeyPath)
+                                    : processObject(value, newKeyPath)}
+                            </ul>
+                        </div>
+                    );
+                })}
+                <li key="newKey" className="add-item">
+                    {buildNode(<AddItemComponent keyPath={keyPath} />)}
+                </li>
+            </>
+        );
+    };
 
     const isArray = (value) => Array.isArray(value);
 

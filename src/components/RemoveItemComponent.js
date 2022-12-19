@@ -12,7 +12,7 @@ const RemoveItemComponent = ({ keyPath }) => {
         setJsonData(newJson);
     };
 
-    return <CloseButton className="removeItem" onClick={handleRemoveItem} />;
+    return <CloseButton className="remove-item" onClick={handleRemoveItem} />;
 };
 
 export default RemoveItemComponent;

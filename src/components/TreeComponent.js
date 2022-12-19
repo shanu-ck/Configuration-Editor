@@ -3,6 +3,7 @@ import NestedComponent from "./NestedComponent";
 import "./TreeComponent.css";
 import JsonDataContext from "../contexts/JsonDataContext";
 import AddItemComponent from "./AddItemComponent";
+import RemoveItemComponent from "./RemoveItemComponent";
 
 const TreeComponent = () => {
     const { jsonData } = useContext(JsonDataContext);
@@ -15,7 +16,7 @@ const TreeComponent = () => {
                     let newKeyPath = keyGen(keyPath, key);
                     return (
                         <li key={reactKey + key}>
-                            {buildNode(key)}
+                            {buildNode(key, newKeyPath)}
                             <ul className="nested">
                                 {isPrimitive(object[key])
                                     ? buildLeaf(object[key], newKeyPath)
@@ -27,7 +28,7 @@ const TreeComponent = () => {
                     );
                 })}
                 <li key="newKey" className="add-item">
-                    {buildNode(<AddItemComponent keyPath={keyPath} />)}
+                    {buildNode(<AddItemComponent keyPath={keyPath} />, keyPath)}
                 </li>
             </>
         );
@@ -40,7 +41,7 @@ const TreeComponent = () => {
                     let newKeyPath = keyGen(keyPath, key);
                     return (
                         <div key={key + value}>
-                            {buildNode(key)}
+                            {buildNode(key, newKeyPath)}
                             <ul className="nested">
                                 {isPrimitive(value)
                                     ? buildLeaf(value, newKeyPath)
@@ -52,7 +53,7 @@ const TreeComponent = () => {
                     );
                 })}
                 <li key="newKey" className="add-item">
-                    {buildNode(<AddItemComponent keyPath={keyPath} />)}
+                    {buildNode(<AddItemComponent keyPath={keyPath} />, keyPath)}
                 </li>
             </>
         );
@@ -68,7 +69,7 @@ const TreeComponent = () => {
         );
     };
 
-    const buildNode = (key) => (
+    const buildNode = (key, keyPath) => (
         <span
             className="node caret"
             onClick={(e) => {
@@ -76,6 +77,7 @@ const TreeComponent = () => {
             }}
         >
             {key}
+            <RemoveItemComponent keyPath={keyPath} />
         </span>
     );
 

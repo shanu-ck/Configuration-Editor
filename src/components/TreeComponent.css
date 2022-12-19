@@ -58,3 +58,13 @@ body {
 .add-item .caret-down::before {
     transform: rotate(45deg);
 }
+
+.caret-down .removeItem {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: x-small;
+}
+
+.removeItem {
+    display: none;
+}

@@ -45,3 +45,16 @@ body {
 .active {
     display: block;
 }
+
+/* Create the Plus/Add sign with a unicode, and style it */
+.add-item .caret::before {
+    content: "\2795";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+/* Rotate the Plus/Add icon when clicked on (using JavaScript) */
+.add-item .caret-down::before {
+    transform: rotate(45deg);
+}

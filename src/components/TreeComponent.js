@@ -2,27 +2,36 @@ import React, { useContext } from "react";
 import NestedComponent from "./NestedComponent";
 import "./TreeComponent.css";
 import JsonDataContext from "../contexts/JsonDataContext";
+import AddItemComponent from "./AddItemComponent";
 
 const TreeComponent = () => {
     const { jsonData } = useContext(JsonDataContext);
     const keyGen = (keyPath, key) => [...keyPath, key];
 
-    const processObject = (object, keyPath) =>
-        Object.keys(object).map((key, reactKey) => {
-            let newKeyPath = keyGen(keyPath, key);
-            return (
-                <li key={reactKey + key}>
-                    {buildNode(key)}
-                    <ul className="nested">
-                        {isPrimative(object[key])
-                            ? buildLeaf(object[key], newKeyPath)
-                            : isArray(object[key])
-                            ? loopArray(object[key], newKeyPath)
-                            : processObject(object[key], newKeyPath)}
-                    </ul>
+    const processObject = (object, keyPath) => {
+        return (
+            <>
+                {Object.keys(object).map((key, reactKey) => {
+                    let newKeyPath = keyGen(keyPath, key);
+                    return (
+                        <li key={reactKey + key}>
+                            {buildNode(key)}
+                            <ul className="nested">
+                                {isPrimitive(object[key])
+                                    ? buildLeaf(object[key], newKeyPath)
+                                    : isArray(object[key])
+                                    ? loopArray(object[key], newKeyPath)
+                                    : processObject(object[key], newKeyPath)}
+                            </ul>
+                        </li>
+                    );
+                })}
+                <li key="newKey" className="add-item">
+                    {buildNode(<AddItemComponent keyPath={keyPath} />)}
                 </li>
-            );
-        });
+            </>
+        );
+    };
 
     const loopArray = (array, keyPath) =>
         array.map((value, key) => {
@@ -31,7 +40,7 @@ const TreeComponent = () => {
                 <div key={key + value}>
                     {buildNode(key)}
                     <ul className="nested">
-                        {isPrimative(value)
+                        {isPrimitive(value)
                             ? buildLeaf(value, newKeyPath)
                             : isArray(value)
                             ? loopArray(value, newKeyPath)
@@ -43,7 +52,7 @@ const TreeComponent = () => {
 
     const isArray = (value) => Array.isArray(value);
 
-    const isPrimative = (value) => {
+    const isPrimitive = (value) => {
         return (
             typeof value === "string" ||
             typeof value === "number" ||

@@ -6,7 +6,7 @@ function Header() {
         <>
             <Navbar bg="light">
                 <Container>
-                    <Navbar.Brand href="/">Configuration Editor</Navbar.Brand>
+                    <Navbar.Brand href="#">Configuration Editor</Navbar.Brand>
                 </Container>
             </Navbar>
         </>

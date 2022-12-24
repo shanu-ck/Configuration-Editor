@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Configuration-Editor/static/css/main.5b44469f.css",
+    "main.js": "/Configuration-Editor/static/js/main.fe420dd1.js",
+    "index.html": "/Configuration-Editor/index.html",
+    "main.5b44469f.css.map": "/Configuration-Editor/static/css/main.5b44469f.css.map",
+    "main.fe420dd1.js.map": "/Configuration-Editor/static/js/main.fe420dd1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5b44469f.css",
+    "static/js/main.fe420dd1.js"
+  ]
+}
